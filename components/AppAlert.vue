@@ -46,10 +46,13 @@
       </div>
     </div>
 
-    <div class="my-10">
+    <div
+      v-if="address"
+      class="my-10">
+
       Forcast via the <strong>{{ office.name }}</strong> office.<br />
-      {{ office.address.streetAddress }}<br />
-      {{ office.address.addressLocality }}, {{ office.address.addressRegion }} {{ office.address.postalCode }}
+      {{ address.streetAddress }}<br />
+      {{ address.addressLocality }}, {{ address.addressRegion }} {{ address.postalCode }}
     </div>
 
     <div class="my-10">
@@ -166,6 +169,10 @@
 
   const daysInPeriod = computed(() => {
     return selectedGridPointsPeriods.value.length;
+  });
+
+  const address = computed(() => {
+    return office.value?.address;
   });
 
   watch(selectedStation, () => {
